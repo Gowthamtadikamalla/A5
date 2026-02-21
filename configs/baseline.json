@@ -1,0 +1,33 @@
+{
+  "lecture": "Topic 5: MLOps",
+  "problem": "real-time transaction risk scoring",
+  "features": [
+    "amount",
+    "merchant_risk",
+    "velocity_1h",
+    "account_age_days",
+    "geo_distance_km",
+    "device_risk"
+  ],
+  "label_col": "label",
+  "train_csv": "data/transactions_train.csv",
+  "seed": 123,
+  "valid_frac": 0.2,
+  "monitor": {
+    "threshold": 0.75,
+    "drift_feature_count_trigger": 2
+  },
+  "model": {
+    "type": "logistic_scorecard",
+    "bias": -1.6,
+    "weights": {
+      "amount": 0.012,
+      "merchant_risk": 2.4,
+      "velocity_1h": 1.6,
+      "account_age_days": -0.003,
+      "geo_distance_km": 0.007,
+      "device_risk": 1.8
+    },
+    "threshold": 0.5
+  }
+}
